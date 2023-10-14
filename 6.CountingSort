@@ -1,5 +1,36 @@
 #include<iostream>
 
+//This code is better and it works in VS
+void countingSort(char arr[], int n) {
+    char* output = new char[n]; // Create an output array to store the sorted characters.
+
+    // Initialize the count array with zeros.
+    int count[256] = { 0 };
+
+    // Count the occurrences of each character.
+    for (int i = 0; i < n; i++) {
+        count[arr[i]]++;
+    }
+
+    // Modify the count array to store the correct positions of characters in the output array.
+    for (int i = 1; i < 256; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // Build the output array based on the count array.
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
+    }
+
+    // Copy the sorted characters from the output array back to the original array.
+    for (int i = 0; i < n; i++) {
+        arr[i] = output[i];
+    }
+    delete[]output;
+}
+
+//This code is provided in lectures but it doesnt work in VS
 void countingSort(char arr[], int n) {
     char *arr_copy = new char[n];  //Create a copy of the original array to preserve its contents. This copy, arr_copy, will be used during the sorting process.
 
