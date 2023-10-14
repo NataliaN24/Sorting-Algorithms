@@ -1,0 +1,35 @@
+#include<iostream>
+
+void countingSort(char arr[], int n) {
+    char *arr_copy = new char[n];  //Create a copy of the original array to preserve its contents. This copy, arr_copy, will be used during the sorting process.
+
+    for (int i = 0; i < n; i++) {
+        arr_copy[i] = arr[i];  //copy elements of arr in copy_arr
+    }
+    
+    int* count = new int[256];    //This line creates an array count to store the count of occurrences of each character.Character data is often represented using 8 bits, and 8 bits can represent 256 different values (2^8 = 256).
+    for (int i = 0; i < n; i++) {
+        count[arr[i]] = count[arr[i]] + 1; //counts the occurrencies of each char in arr
+    }
+    for (int i = 1; i <= 255; i++) {
+        count[i] += count[i - 1];  //This loop updates the count array to contain the positions where each character should be placed in the sorted array.
+    }
+    for (int i = n - 1; i >= 0; --i) {
+        arr[count[arr_copy[i]] - 1] = arr_copy[i]; // It iterates through the copy of the original array in reverse order, using the count array to determine the correct position for each character in the sorted array. 
+        
+        count[arr_copy[i]] = count[arr_copy[i]] - 1;  //The sorted characters are placed back in the original array arr.
+    }
+}
+
+int main() {
+    char arr[] = { 'b', 'a', 'd', 'c', 'a', 'b' };
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    countingSort(arr, n);
+
+    for (int i = 0; i < n; i++) {
+        std::cout << arr[i] << " ";
+    }
+
+    return 0;
+}
