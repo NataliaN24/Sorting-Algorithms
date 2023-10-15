@@ -18,7 +18,7 @@ int partition(int arr[], int low, int high) {//rearranges the elements such that
 
 void quickSort(int arr[],int low,int high) {
     if (low < high) {
-        int pi = partition(arr, low, high);
+        int pi = partition(arr, low, high);//pivot index
         quickSort(arr, low, pi - 1);   //it recursively sorts the sub-arrays to the left and right of the pivot.
         quickSort(arr, pi + 1, high);
     }
