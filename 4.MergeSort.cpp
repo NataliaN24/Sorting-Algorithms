@@ -1,66 +1,52 @@
 #include <iostream>
 
-void merge(int arr[], int start, int mid, int end) {  // (arr,0,2,5)
-    int i = 0;
-    int j = 0;
-    int k = start;
+template<class t>
+void merge(t*arr1,int length1,t*arr2,int length2) {
 
-    int n1 = mid - start + 1;  //2-0+1=3 ->element=9
-    int n2 = end - mid;    //5-2=3  ->element=9
+	t* result = new t[length1 + length2];
+	int cursor1 = 0; int cursor2 = 0; int rescursor = 0;
 
-    int* left = new int[n1];
-    int* right = new int[n2];
+	while (cursor1 < length1 && cursor2 < length2) {
+		if (arr1[cursor1] < arr2[cursor2]) {
+			result[rescursor++] = arr1[cursor1++];
+		}
+		else {
+			result[rescursor++] = arr2[cursor2++];
+		}
+	}
 
-    for (i = 0; i < n1; i++) {   //we place in a separate array the elements of the first divided array
-        left[i] = arr[start + i];
-    }
-    for (j = 0; j < n2; j++) {
-        right[j] = arr[mid + 1 + j];
-    }
-
-    i = 0;
-    j = 0;
-
-    while (i < n1 && j < n2) {
-        if (left[i] <= right[j]) {
-            arr[k] = left[i];
-            i++;
-        }
-        else {
-            arr[k] = right[j];
-            j++;
-        }
-        k++;
-    }
-
-    while (i < n1) {
-        arr[k] = left[i];
-        i++;
-        k++;
-    }
-    while (j < n2) {
-        arr[k] = right[j];
-        j++;
-        k++;
-    }
-
-    delete[] left;
-    delete[] right;
+	while (cursor1<length1)
+	{
+		result[rescursor++] = arr1[cursor1++];
+	}
+	while (cursor2 < length2) {
+		result[rescursor++] = arr2[cursor2++];
+	}
+	int finalLen = length1 + length2;
+	for (int i = 0; i < finalLen; i++) {
+		arr1[i] = result[i];
+	}
+	delete[]result;
 }
 
-void mergeSort(int arr[], int lhs, int rhs) {
-    if (lhs < rhs) {
-        int medium = lhs + (rhs - lhs) / 2;   //0+5/2=2  if it was just lhs+rhs it could lead to integer truncation
-        mergeSort(arr, lhs, medium);    // (arr,0,2)
-        mergeSort(arr, medium + 1, rhs);    //(arr,3,5)
-        merge(arr, lhs, medium, rhs);      // (arr,0,2,5)
-    }
+template<class t>
+void mergeSort(t*arr,int len) {
+	
+	if (len <= 1) { 
+		return;
+	}
+	int mid = len / 2;
+	mergeSort(arr, mid);
+	mergeSort(arr+mid, len - mid);
+
+	merge<t>(arr, mid, arr + mid, len - mid);
+
 }
 
 int main() {
     int arr[] = { 5, 4, 1, 9, 3, 7 };
     int n = sizeof(arr) / sizeof(arr[0]);
-    mergeSort(arr, 0, n - 1); //size-1 for lhs->5
+    mergeSort(arr, n); 
 
     for (int i = 0; i < n; i++) {
         std::cout << arr[i] << " ";
