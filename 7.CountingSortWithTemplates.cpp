@@ -13,8 +13,8 @@ void counting_sort(std::vector<T>& arr) {
 	T range = max_val - min_val + 1;
 	std::vector<int> count(range, 0);
 
-	for (const T& element : arr) {
-		count[element - min_val]++;
+	for (size_t i=0;i<arr.size();++i) {
+		count[arr[i] - min_val]++;
 	}
 	std::vector<T> output(arr.size());
 
