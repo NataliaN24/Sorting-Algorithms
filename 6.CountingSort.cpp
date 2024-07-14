@@ -1,6 +1,6 @@
 #include<iostream>
 
-//This code is better 
+//This code is better -------------------------------------------------------------------------------------------------------------------------------------------
 void countingSort(char arr[], int n) {
     char* output = new char[n]; // Create an output array to store the sorted characters.
 
@@ -30,7 +30,7 @@ void countingSort(char arr[], int n) {
     delete[]output;
 }
 
-//the code of lectures 
+//the code of lectures ------------------------------------------------------------------------------------------------------------------------------------------
 void countingSort(char arr[], int n) {
     char* arr_copy = new char[n];
 
@@ -58,7 +58,7 @@ void countingSort(char arr[], int n) {
    
 }
 
-//for int arr[]
+//for int arr[]---------------------------------------------------------------------------------------------------------------------------------------------------
 void counting_sort(int* arr, size_t arrLength) {
 	int* arr_copy=new int[arrLength];
 
