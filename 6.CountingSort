@@ -1,6 +1,6 @@
 #include<iostream>
 
-//This code is better and it works in VS
+//This code is better 
 void countingSort(char arr[], int n) {
     char* output = new char[n]; // Create an output array to store the sorted characters.
 
