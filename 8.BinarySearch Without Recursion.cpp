@@ -37,4 +37,6 @@ int main()
 
 	cout<<"The element is found at index:"<< binarySearch(arr, 0, n - 1, x);
 	delete[]arr;
+	return 0;
+	
 }
