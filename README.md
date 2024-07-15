@@ -1,4 +1,4 @@
-# <div align="center">**Sorting-Algorithms in C++**</div>
+# <div align="center">**Sorting & Searching Algorithms in C++**</div>
 
 1. [Bubble Sort](https://github.com/NataliaN24/Sorting-Algorithms/blob/main/1.BubbleSort.cpp)
    - **Time Complexity**: O(n^2)
