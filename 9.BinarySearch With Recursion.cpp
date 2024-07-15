@@ -36,4 +36,5 @@ int main()
 	int x;
 	cin >> x;
 	cout<<"The element is found at index:"<< binarySearch(arr, 0, n - 1, x);
+	return 0;
 }
