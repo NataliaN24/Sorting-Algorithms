@@ -1,5 +1,5 @@
 #include<iostream>
-using namespace std
+using namespace std;
 int binarySearch(int* arr, int left, int right, int x)
 {
 	while (left <= right) 
